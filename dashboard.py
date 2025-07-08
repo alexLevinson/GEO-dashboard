@@ -74,7 +74,10 @@ if not st.session_state.authenticated:
             if customer_input in customers:
                 st.session_state.authenticated = True
                 st.session_state.customer_name = customer_input
-                st.experimental_rerun()
+                try:
+                    st.rerun()
+                except AttributeError:
+                    st.experimental_rerun()
             else:
                 st.error("Customer not found. Please check your customer name.")
         else:
@@ -91,7 +94,10 @@ with col2:
     if st.button("Logout"):
         st.session_state.authenticated = False
         st.session_state.customer_name = None
-        st.experimental_rerun()
+        try:
+            st.rerun()
+        except AttributeError:
+            st.experimental_rerun()
 
 if selected_customer:
     queries = get_queries_for_customer(selected_customer)
