@@ -138,7 +138,9 @@ const Dashboard: React.FC = () => {
 
         {/* Main Content */}
         <div className="flex-1 px-8 py-6 overflow-auto">
-          {!selectedQuery ? (
+          {activeTab === 'settings' ? (
+            <SettingsTab />
+          ) : !selectedQuery ? (
             <div className="text-center py-20">
               <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                 <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,7 +177,6 @@ const Dashboard: React.FC = () => {
               {activeTab === 'performance' && <MyPerformanceTab data={data} selectedQuery={selectedQuery} />}
               {activeTab === 'competitors' && <CompetitorsTab data={data} allData={allData} selectedQuery={selectedQuery} />}
               {activeTab === 'sources' && <SourcesTab data={data} allData={allData} selectedQuery={selectedQuery} />}
-              {activeTab === 'settings' && <SettingsTab />}
             </>
           )}
         </div>
